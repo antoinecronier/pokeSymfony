@@ -1,0 +1,8 @@
+pokebattle_api_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: PokebattleApiBundle:Default:index }
+
+pokebattle_api:
+    type:     rest
+    resource: "@PokebattleApiBundle/Resources/config/routing_rest.yml"
+    prefix : /api

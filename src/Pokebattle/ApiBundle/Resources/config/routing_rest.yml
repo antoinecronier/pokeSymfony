@@ -1,0 +1,65 @@
+
+pokebattle_rest_pokeNpc:
+    type:     rest
+    resource: Pokebattle\ApiBundle\Controller\RestPokeNpcController
+    prefix : pokenpc
+
+pokebattle_rest_pokeBadge:
+    type:     rest
+    resource: Pokebattle\ApiBundle\Controller\RestPokeBadgeController
+    prefix : pokebadge
+
+pokebattle_rest_pokeZone:
+    type:     rest
+    resource: Pokebattle\ApiBundle\Controller\RestPokeZoneController
+    prefix : pokezone
+
+pokebattle_rest_pokePosition:
+    type:     rest
+    resource: Pokebattle\ApiBundle\Controller\RestPokePositionController
+    prefix : pokeposition
+
+pokebattle_rest_pokeArene:
+    type:     rest
+    resource: Pokebattle\ApiBundle\Controller\RestPokeAreneController
+    prefix : pokearene
+
+pokebattle_rest_pokeType:
+    type:     rest
+    resource: Pokebattle\ApiBundle\Controller\RestPokeTypeController
+    prefix : poketype
+
+pokebattle_rest_pokeAttaque:
+    type:     rest
+    resource: Pokebattle\ApiBundle\Controller\RestPokeAttaqueController
+    prefix : pokeattaque
+
+pokebattle_rest_pokeDresseur:
+    type:     rest
+    resource: Pokebattle\ApiBundle\Controller\RestPokeDresseurController
+    prefix : pokedresseur
+
+pokebattle_rest_pokeObjet:
+    type:     rest
+    resource: Pokebattle\ApiBundle\Controller\RestPokeObjetController
+    prefix : pokeobjet
+
+pokebattle_rest_pokePokemon:
+    type:     rest
+    resource: Pokebattle\ApiBundle\Controller\RestPokePokemonController
+    prefix : pokepokemon
+
+pokebattle_rest_pokeTypeObjet:
+    type:     rest
+    resource: Pokebattle\ApiBundle\Controller\RestPokeTypeObjetController
+    prefix : poketypeobjet
+
+pokebattle_rest_pokeTypePokemon:
+    type:     rest
+    resource: Pokebattle\ApiBundle\Controller\RestPokeTypePokemonController
+    prefix : poketypepokemon
+
+pokebattle_rest_sync:
+    type:     rest
+    resource: Pokebattle\ApiBundle\Controller\RestSyncGlobalController
+    prefix: sync

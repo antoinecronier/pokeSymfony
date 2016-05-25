@@ -1,0 +1,461 @@
+<?php
+/**************************************************************************
+ * PokeTypePokemon.php, pokebattle Android
+ *
+ * Copyright 2016
+ * Description : 
+ * Author(s)   : Harmony
+ * Licence     : 
+ * Last update : May 25, 2016
+ *
+ **************************************************************************/
+
+namespace Pokebattle\ApiBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JSON;
+use \DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * PokeTypePokemon
+ *
+ * @ORM\Table(name="pokebattle_pokeTypePokemon")
+ * @ORM\Entity(repositoryClass="Pokebattle\ApiBundle\Repository\PokeTypePokemonRepository")
+ * @JSON\ExclusionPolicy("ALL")
+ */
+class PokeTypePokemon
+{
+    /**
+     * @ORM\Column(name="id", type="integer")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("id")
+     
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(name="nom", type="string")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("nom")
+     
+     * @var string
+     */
+    private $nom;
+
+    /**
+     * @ORM\Column(name="attaque", type="integer")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("attaque")
+     
+     * @var integer
+     */
+    private $attaque;
+
+    /**
+     * @ORM\Column(name="attaque_spe", type="integer")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("attaque_spe")
+     
+     * @var integer
+     */
+    private $attaque_spe;
+
+    /**
+     * @ORM\Column(name="defence", type="integer")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("defence")
+     
+     * @var integer
+     */
+    private $defence;
+
+    /**
+     * @ORM\Column(name="defence_spe", type="integer")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("defence_spe")
+     
+     * @var integer
+     */
+    private $defence_spe;
+
+    /**
+     * @ORM\Column(name="vitesse", type="integer")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("vitesse")
+     
+     * @var integer
+     */
+    private $vitesse;
+
+    /**
+     * @ORM\Column(name="pv", type="integer")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("pv")
+     
+     * @var integer
+     */
+    private $pv;
+
+    /**
+     * @ORM\Column(name="pokedex", type="integer")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("pokedex")
+     
+     * @var integer
+     */
+    private $pokedex;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PokeTypePokemon")
+     * @ORM\JoinColumn(name="evolue_id", referencedColumnName="id")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("evolue")
+     
+     * @var PokeTypePokemon
+     */
+    private $evolue;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PokeType", mappedBy="pokeTypePokemontypesInternal")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("types")
+     
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $types;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PokeZone", mappedBy="pokeTypePokemonzonesInternal")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("zones")
+     
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $zones;
+
+
+    /**
+     * Set id
+     *
+     * @param integer id
+     *
+     * @return PokeTypePokemon
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return PokeTypePokemon
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    /**
+     * Set nom
+     *
+     * @param string nom
+     *
+     * @return PokeTypePokemon
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return PokeTypePokemon
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+    /**
+     * Set attaque
+     *
+     * @param integer attaque
+     *
+     * @return PokeTypePokemon
+     */
+    public function setAttaque($attaque)
+    {
+        $this->attaque = $attaque;
+
+        return $this;
+    }
+
+    /**
+     * Get attaque
+     *
+     * @return PokeTypePokemon
+     */
+    public function getAttaque()
+    {
+        return $this->attaque;
+    }
+    /**
+     * Set attaque_spe
+     *
+     * @param integer attaque_spe
+     *
+     * @return PokeTypePokemon
+     */
+    public function setAttaque_spe($attaque_spe)
+    {
+        $this->attaque_spe = $attaque_spe;
+
+        return $this;
+    }
+
+    /**
+     * Get attaque_spe
+     *
+     * @return PokeTypePokemon
+     */
+    public function getAttaque_spe()
+    {
+        return $this->attaque_spe;
+    }
+    /**
+     * Set defence
+     *
+     * @param integer defence
+     *
+     * @return PokeTypePokemon
+     */
+    public function setDefence($defence)
+    {
+        $this->defence = $defence;
+
+        return $this;
+    }
+
+    /**
+     * Get defence
+     *
+     * @return PokeTypePokemon
+     */
+    public function getDefence()
+    {
+        return $this->defence;
+    }
+    /**
+     * Set defence_spe
+     *
+     * @param integer defence_spe
+     *
+     * @return PokeTypePokemon
+     */
+    public function setDefence_spe($defence_spe)
+    {
+        $this->defence_spe = $defence_spe;
+
+        return $this;
+    }
+
+    /**
+     * Get defence_spe
+     *
+     * @return PokeTypePokemon
+     */
+    public function getDefence_spe()
+    {
+        return $this->defence_spe;
+    }
+    /**
+     * Set vitesse
+     *
+     * @param integer vitesse
+     *
+     * @return PokeTypePokemon
+     */
+    public function setVitesse($vitesse)
+    {
+        $this->vitesse = $vitesse;
+
+        return $this;
+    }
+
+    /**
+     * Get vitesse
+     *
+     * @return PokeTypePokemon
+     */
+    public function getVitesse()
+    {
+        return $this->vitesse;
+    }
+    /**
+     * Set pv
+     *
+     * @param integer pv
+     *
+     * @return PokeTypePokemon
+     */
+    public function setPv($pv)
+    {
+        $this->pv = $pv;
+
+        return $this;
+    }
+
+    /**
+     * Get pv
+     *
+     * @return PokeTypePokemon
+     */
+    public function getPv()
+    {
+        return $this->pv;
+    }
+    /**
+     * Set pokedex
+     *
+     * @param integer pokedex
+     *
+     * @return PokeTypePokemon
+     */
+    public function setPokedex($pokedex)
+    {
+        $this->pokedex = $pokedex;
+
+        return $this;
+    }
+
+    /**
+     * Get pokedex
+     *
+     * @return PokeTypePokemon
+     */
+    public function getPokedex()
+    {
+        return $this->pokedex;
+    }
+    /**
+     * Set evolue
+     *
+     * @param \Pokebattle\ApiBundle\Entity\PokeTypePokemon $evolue
+     *
+     * @return PokeTypePokemon
+     */
+    public function setEvolue(\Pokebattle\ApiBundle\Entity\PokeTypePokemon $evolue = null)
+    {
+        $this->evolue = $evolue;
+
+        return $this;
+    }
+
+    /**
+     * Get evolue
+     *
+     * @return \Pokebattle\ApiBundle\Entity\PokeTypePokemon
+     */
+    public function getEvolue()
+    {
+        return $this->evolue;
+    }
+    /**
+     * Add types
+     *
+     * @param \{project_name?cap_first}\ApiBundle\Entity\PokeType $types
+     *
+     * @return PokeTypePokemon
+     */
+    public function addTypes(\Pokebattle\ApiBundle\Entity\PokeType $types)
+    {
+        $this->typess[] = $types;
+
+        return $this;
+    }
+
+    /**
+     * Remove types
+     *
+     * @param \Pokebattle\ApiBundle\Entity\PokeType $types
+     */
+    public function removeTypes(\Pokebattle\ApiBundle\Entity\PokeType $types)
+    {
+        $this->typess->removeElement($types);
+    }
+
+    /**
+     * Get typess
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTypes()
+    {
+        return $this->types;
+    }
+    /**
+     * Add zones
+     *
+     * @param \{project_name?cap_first}\ApiBundle\Entity\PokeZone $zones
+     *
+     * @return PokeTypePokemon
+     */
+    public function addZones(\Pokebattle\ApiBundle\Entity\PokeZone $zones)
+    {
+        $this->zoness[] = $zones;
+
+        return $this;
+    }
+
+    /**
+     * Remove zones
+     *
+     * @param \Pokebattle\ApiBundle\Entity\PokeZone $zones
+     */
+    public function removeZones(\Pokebattle\ApiBundle\Entity\PokeZone $zones)
+    {
+        $this->zoness->removeElement($zones);
+    }
+
+    /**
+     * Get zoness
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getZones()
+    {
+        return $this->zones;
+    }
+}

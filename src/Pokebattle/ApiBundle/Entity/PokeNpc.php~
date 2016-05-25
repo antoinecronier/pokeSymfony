@@ -1,0 +1,484 @@
+<?php
+/**************************************************************************
+ * PokeNpc.php, pokebattle Android
+ *
+ * Copyright 2016
+ * Description : 
+ * Author(s)   : Harmony
+ * Licence     : 
+ * Last update : May 25, 2016
+ *
+ **************************************************************************/
+
+namespace Pokebattle\ApiBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JSON;
+use \DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * PokeNpc
+ *
+ * @ORM\Table(name="pokebattle_pokeNpc")
+ * @ORM\Entity(repositoryClass="Pokebattle\ApiBundle\Repository\PokeNpcRepository")
+ * @JSON\ExclusionPolicy("ALL")
+ */
+class PokeNpc
+{
+    /**
+     * @ORM\ManyToOne(targetEntity="PokeArene", inversedBy="dresseurs")
+     * @ORM\JoinColumn(name="PokeArenedresseursInternal_id", referencedColumnName="id")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("pokeArenedresseursInternal")
+     
+     * @var PokeArene
+     */
+    private $pokeArenedresseursInternal;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PokeDresseur", inversedBy="npcs")
+     * @ORM\JoinColumn(name="PokeDresseurnpcsInternal_id", referencedColumnName="id")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("pokeDresseurnpcsInternal")
+     
+     * @var PokeDresseur
+     */
+    private $pokeDresseurnpcsInternal;
+
+    /**
+     * @ORM\Column(name="id", type="integer")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("id")
+     
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(name="nom", type="string")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("nom")
+     
+     * @var string
+     */
+    private $nom;
+
+    /**
+     * @ORM\Column(name="profession", type="string")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("profession")
+     
+     * @var string
+     */
+    private $profession;
+
+    /**
+     * @ORM\Column(name="description", type="string")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("description")
+     
+     * @var string
+     */
+    private $description;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PokeObjet", mappedBy="pokeNpcobjetsInternal")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("objets")
+     
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $objets;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PokeBadge", mappedBy="pokeNpcbadgeInternal")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("badge")
+     
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $badge;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PokePokemon", mappedBy="pokeNpcpokemonsInternal")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("pokemons")
+     
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $pokemons;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PokePokemon", mappedBy="pokeNpcteamInternal")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("team")
+     
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $team;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PokePosition")
+     * @ORM\JoinColumn(name="position_id", referencedColumnName="id")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("position")
+     
+     * @var PokePosition
+     */
+    private $position;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PokeZone")
+     * @ORM\JoinColumn(name="zone_id", referencedColumnName="id")
+     * @JSON\Expose
+     * @JSON\Groups({"api_process"})
+     * @JSON\Since("1.0")
+     * @JSON\SerializedName("zone")
+     
+     * @var PokeZone
+     */
+    private $zone;
+
+
+    /**
+     * Set pokeArenedresseursInternal
+     *
+     * @param \Pokebattle\ApiBundle\Entity\PokeArene $pokeArenedresseursInternal
+     *
+     * @return PokeNpc
+     */
+    public function setPokeArenedresseursInternal(\Pokebattle\ApiBundle\Entity\PokeArene $pokeArenedresseursInternal = null)
+    {
+        $this->pokeArenedresseursInternal = $pokeArenedresseursInternal;
+
+        return $this;
+    }
+
+    /**
+     * Get pokeArenedresseursInternal
+     *
+     * @return \Pokebattle\ApiBundle\Entity\PokeArene
+     */
+    public function getPokeArenedresseursInternal()
+    {
+        return $this->pokeArenedresseursInternal;
+    }
+    /**
+     * Set pokeDresseurnpcsInternal
+     *
+     * @param \Pokebattle\ApiBundle\Entity\PokeDresseur $pokeDresseurnpcsInternal
+     *
+     * @return PokeNpc
+     */
+    public function setPokeDresseurnpcsInternal(\Pokebattle\ApiBundle\Entity\PokeDresseur $pokeDresseurnpcsInternal = null)
+    {
+        $this->pokeDresseurnpcsInternal = $pokeDresseurnpcsInternal;
+
+        return $this;
+    }
+
+    /**
+     * Get pokeDresseurnpcsInternal
+     *
+     * @return \Pokebattle\ApiBundle\Entity\PokeDresseur
+     */
+    public function getPokeDresseurnpcsInternal()
+    {
+        return $this->pokeDresseurnpcsInternal;
+    }
+    /**
+     * Set id
+     *
+     * @param integer id
+     *
+     * @return PokeNpc
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return PokeNpc
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    /**
+     * Set nom
+     *
+     * @param string nom
+     *
+     * @return PokeNpc
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return PokeNpc
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+    /**
+     * Set profession
+     *
+     * @param string profession
+     *
+     * @return PokeNpc
+     */
+    public function setProfession($profession)
+    {
+        $this->profession = $profession;
+
+        return $this;
+    }
+
+    /**
+     * Get profession
+     *
+     * @return PokeNpc
+     */
+    public function getProfession()
+    {
+        return $this->profession;
+    }
+    /**
+     * Set description
+     *
+     * @param string description
+     *
+     * @return PokeNpc
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return PokeNpc
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+    /**
+     * Add objets
+     *
+     * @param \{project_name?cap_first}\ApiBundle\Entity\PokeObjet $objets
+     *
+     * @return PokeNpc
+     */
+    public function addObjets(\Pokebattle\ApiBundle\Entity\PokeObjet $objets)
+    {
+        $this->objetss[] = $objets;
+
+        return $this;
+    }
+
+    /**
+     * Remove objets
+     *
+     * @param \Pokebattle\ApiBundle\Entity\PokeObjet $objets
+     */
+    public function removeObjets(\Pokebattle\ApiBundle\Entity\PokeObjet $objets)
+    {
+        $this->objetss->removeElement($objets);
+    }
+
+    /**
+     * Get objetss
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getObjets()
+    {
+        return $this->objets;
+    }
+    /**
+     * Add badge
+     *
+     * @param \{project_name?cap_first}\ApiBundle\Entity\PokeBadge $badge
+     *
+     * @return PokeNpc
+     */
+    public function addBadge(\Pokebattle\ApiBundle\Entity\PokeBadge $badge)
+    {
+        $this->badges[] = $badge;
+
+        return $this;
+    }
+
+    /**
+     * Remove badge
+     *
+     * @param \Pokebattle\ApiBundle\Entity\PokeBadge $badge
+     */
+    public function removeBadge(\Pokebattle\ApiBundle\Entity\PokeBadge $badge)
+    {
+        $this->badges->removeElement($badge);
+    }
+
+    /**
+     * Get badges
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBadge()
+    {
+        return $this->badge;
+    }
+    /**
+     * Add pokemons
+     *
+     * @param \{project_name?cap_first}\ApiBundle\Entity\PokePokemon $pokemons
+     *
+     * @return PokeNpc
+     */
+    public function addPokemons(\Pokebattle\ApiBundle\Entity\PokePokemon $pokemons)
+    {
+        $this->pokemonss[] = $pokemons;
+
+        return $this;
+    }
+
+    /**
+     * Remove pokemons
+     *
+     * @param \Pokebattle\ApiBundle\Entity\PokePokemon $pokemons
+     */
+    public function removePokemons(\Pokebattle\ApiBundle\Entity\PokePokemon $pokemons)
+    {
+        $this->pokemonss->removeElement($pokemons);
+    }
+
+    /**
+     * Get pokemonss
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPokemons()
+    {
+        return $this->pokemons;
+    }
+    /**
+     * Add team
+     *
+     * @param \{project_name?cap_first}\ApiBundle\Entity\PokePokemon $team
+     *
+     * @return PokeNpc
+     */
+    public function addTeam(\Pokebattle\ApiBundle\Entity\PokePokemon $team)
+    {
+        $this->teams[] = $team;
+
+        return $this;
+    }
+
+    /**
+     * Remove team
+     *
+     * @param \Pokebattle\ApiBundle\Entity\PokePokemon $team
+     */
+    public function removeTeam(\Pokebattle\ApiBundle\Entity\PokePokemon $team)
+    {
+        $this->teams->removeElement($team);
+    }
+
+    /**
+     * Get teams
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTeam()
+    {
+        return $this->team;
+    }
+    /**
+     * Set position
+     *
+     * @param \Pokebattle\ApiBundle\Entity\PokePosition $position
+     *
+     * @return PokeNpc
+     */
+    public function setPosition(\Pokebattle\ApiBundle\Entity\PokePosition $position = null)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return \Pokebattle\ApiBundle\Entity\PokePosition
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+    /**
+     * Set zone
+     *
+     * @param \Pokebattle\ApiBundle\Entity\PokeZone $zone
+     *
+     * @return PokeNpc
+     */
+    public function setZone(\Pokebattle\ApiBundle\Entity\PokeZone $zone = null)
+    {
+        $this->zone = $zone;
+
+        return $this;
+    }
+
+    /**
+     * Get zone
+     *
+     * @return \Pokebattle\ApiBundle\Entity\PokeZone
+     */
+    public function getZone()
+    {
+        return $this->zone;
+    }
+}
